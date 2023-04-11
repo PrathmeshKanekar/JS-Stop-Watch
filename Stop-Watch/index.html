@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stop Watch</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        body{
+            background-color: rgb(35, 35, 35);
+        }
+        #stopw{
+            width: 400px;
+            height: 200px;
+            background-color: aquamarine;
+        }
+        #stopwatch{
+            /* color: white; */
+            font-size: 70px;
+            font-weight: bold;
+        }
+        #start{
+            background-color: green;
+        }
+        .mtop{
+            
+            margin-top: 150px;
+        }
+        .text-center{
+            margin-top: 60px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+       <div class="row">
+        <h2 class="fs-1 fw-bold text-white text-center">⏱ STOP WATCH ⏱</h2>
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6 mtop rounded-pill text-center shadow-lg p-3 mb-5 bg-body rounded">
+            <div id="stopwatch">00:00:00</div>
+            <button onclick="str()" class="btn btn-success">start</button>
+            <button onclick="sto()" class="btn btn-danger">stop</button>
+            <button onclick="res()" class="btn btn-warning">reset</button>
+        </div>
+       </div>
+    </div>
+   
+
+    <script>
+
+        let stopwatch = document.getElementById("stopwatch");
+        let sec = 0;
+        let min = 0;
+        let hr = 0;
+    
+        function str(){
+           x = setInterval(() => {
+            if(sec<59)
+            {
+                sec++;
+            }
+            else if(min>=59)
+            {
+                hr++;
+                min=0;
+            }
+            else{
+                sec = 0
+                min++;
+            }
+            stopwatch.innerHTML = hr + ":" + min + ":" + sec;
+
+            let a = sec.toString().padStart(2,"0");
+            let b = min.toString().padStart(2,"0");
+            let c = hr.toString().padStart(2,"0");
+            console.log( c + ":" + b + ":" + a);
+
+
+            stopwatch.innerHTML = c + ":" + b + ":" + a;
+           }, 100);
+        }
+        function sto(){
+            clearInterval(x);
+        }
+        function res(){
+            sec = 0;
+            min = 0;
+            hr = 0;
+
+            let a = sec.toString().padStart(2,"0");
+            let b = min.toString().padStart(2,"0");
+            let c = hr.toString().padStart(2,"0");
+            stopwatch.innerHTML = c + ":" + b + ":" + a;
+
+            clearInterval(x);
+        }
+    </script>
+</body>
+</html>
